@@ -1,5 +1,7 @@
 package src.com.airtribe.parkinglot.entity;
 
+import src.com.airtribe.parkinglot.enums.TicketStatus;
+
 import java.time.LocalDateTime;
 
 public class Ticket {
@@ -9,6 +11,7 @@ public class Ticket {
     private LocalDateTime exitTime;
     private ParkingSpot parkingSpot;
     private Vehicle vehicle;
+    private TicketStatus ticketStatus;
 
     public int getTicketId() {
         return ticketId;
@@ -55,5 +58,6 @@ public class Ticket {
         this.entryTime = LocalDateTime.now();
         this.parkingSpot = parkingSpot;
         this.vehicle = vehicle;
+        this.ticketStatus = TicketStatus.ACTIVE;
     }
 }
