@@ -64,4 +64,14 @@ public class ParkingSpot {
         this.spotType = spotType;
         this.isOccupied = false;
     }
+
+    public void occupy(Vehicle vehicle){
+        this.parkedVehicle = vehicle;
+        this.isOccupied = true;
+    }
+
+    public void release(){
+        this.parkedVehicle = null;
+        this.isOccupied = false;
+    }
 }
