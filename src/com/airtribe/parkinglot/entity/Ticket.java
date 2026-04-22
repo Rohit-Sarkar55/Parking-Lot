@@ -13,6 +13,7 @@ public class Ticket {
     private ParkingSpot parkingSpot;
     private Vehicle vehicle;
     private TicketStatus ticketStatus;
+    double parkingFee;
 
     public int getTicketId() {
         return ticketId;
@@ -68,5 +69,13 @@ public class Ticket {
 
     public void setTicketStatus(TicketStatus ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    public double getParkingFee() {
+        return parkingFee;
+    }
+
+    public void setParkingFee(double parkingFee) {
+        this.parkingFee = parkingFee;
     }
 }
