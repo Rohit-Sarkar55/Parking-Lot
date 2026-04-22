@@ -6,8 +6,10 @@ import src.com.airtribe.parkinglot.entity.Ticket;
 import src.com.airtribe.parkinglot.entity.Vehicle;
 import src.com.airtribe.parkinglot.enums.TicketStatus;
 import src.com.airtribe.parkinglot.exceptions.ParkingFullException;
+import src.com.airtribe.parkinglot.exceptions.SpotAlreadyOccupied;
 import src.com.airtribe.parkinglot.exceptions.TicketClosedException;
 import src.com.airtribe.parkinglot.exceptions.TicketNotFoundException;
+import src.com.airtribe.parkinglot.strategy.FeeCalculationStrategy;
 import src.com.airtribe.parkinglot.strategy.SpotAllocationStrategy;
 
 import java.time.LocalDateTime;
@@ -18,11 +20,13 @@ import java.util.Map;
 public class ParkingService {
     private ParkingLot parkingLot;
     private SpotAllocationStrategy spotAllocationStrategy;
+    private FeeCalculationStrategy feeCalculationStrategy;
     private Map<Integer, Ticket> activeTickets;
 
-    public ParkingService(ParkingLot parkingLot, SpotAllocationStrategy strategy) {
+    public ParkingService(ParkingLot parkingLot, SpotAllocationStrategy spotAllocationStrategy,FeeCalculationStrategy feeCalculationStrategy) {
         this.parkingLot = parkingLot;
-        this.spotAllocationStrategy = strategy;
+        this.spotAllocationStrategy = spotAllocationStrategy;
+        this.feeCalculationStrategy = feeCalculationStrategy;
         activeTickets = new HashMap<>();
     }
 
@@ -33,7 +37,7 @@ public class ParkingService {
            Ticket ticket = new Ticket(spot, vehicle);
            activeTickets.put(ticket.getTicketId(), ticket);
            return ticket;
-        } catch (ParkingFullException e) {
+        } catch (ParkingFullException | SpotAlreadyOccupied e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -51,8 +55,9 @@ public class ParkingService {
         ParkingSpot spot = ticket.getParkingSpot();
         spot.release();
         ticket.setExitTime(LocalDateTime.now());
+        double fee = feeCalculationStrategy.calculateFee(ticket);
+        ticket.setParkingFee(fee);
         ticket.setTicketStatus(TicketStatus.CLOSED);
-        //calculate payment
         return ticket;
     }
 }

@@ -1,6 +1,7 @@
 package src.com.airtribe.parkinglot.entity;
 
 import src.com.airtribe.parkinglot.enums.SpotType;
+import src.com.airtribe.parkinglot.exceptions.SpotAlreadyOccupied;
 
 public class ParkingSpot {
     private int spotId;
@@ -65,12 +66,16 @@ public class ParkingSpot {
         this.isOccupied = false;
     }
 
-    public void occupy(Vehicle vehicle){
+    public synchronized void occupy(Vehicle vehicle) throws SpotAlreadyOccupied {
+        if(isOccupied) {
+            throw new SpotAlreadyOccupied("Spot is already occupied by "+ vehicle.getVehicleId() );
+        }
         this.parkedVehicle = vehicle;
         this.isOccupied = true;
+
     }
 
-    public void release(){
+    public synchronized void release(){
         this.parkedVehicle = null;
         this.isOccupied = false;
     }
