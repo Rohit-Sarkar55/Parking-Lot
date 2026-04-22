@@ -1,12 +1,12 @@
 package src.com.airtribe.parkinglot.entity;
 
-import src.com.airtribe.parkinglot.enums.VehicleType;
+import src.com.airtribe.parkinglot.enums.SpotType;
 
 public class ParkingSpot {
     private int spotId;
     private int floorNumber;
     private int spotNumber;
-    private VehicleType spotType;
+    private SpotType spotType;
     private boolean isOccupied;
     private Vehicle parkedVehicle;
 
@@ -34,11 +34,11 @@ public class ParkingSpot {
         this.spotNumber = spotNumber;
     }
 
-    public VehicleType getSpotType() {
+    public SpotType getSpotType() {
         return spotType;
     }
 
-    public void setSpotType(VehicleType spotType) {
+    public void setSpotType(SpotType spotType) {
         this.spotType = spotType;
     }
 
@@ -58,7 +58,7 @@ public class ParkingSpot {
         this.parkedVehicle = parkedVehicle;
     }
 
-    public ParkingSpot(int floorNumber, int spotNumber, VehicleType spotType) {
+    public ParkingSpot(int floorNumber, int spotNumber, SpotType spotType) {
         this.floorNumber = floorNumber;
         this.spotNumber = spotNumber;
         this.spotType = spotType;
