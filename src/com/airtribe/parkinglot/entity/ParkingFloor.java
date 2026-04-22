@@ -1,14 +1,11 @@
 package src.com.airtribe.parkinglot.entity;
 
-import src.com.airtribe.parkinglot.enums.VehicleType;
 
 import java.util.List;
-import java.util.Map;
 
 public class ParkingFloor {
-    private int floorId;
+    private int floorNumber;
     private List<ParkingSpot> spots;
-    private Map<VehicleType , List<ParkingSpot>> availableSpots;
 
     public List<ParkingSpot> getSpots() {
         return spots;
@@ -18,21 +15,13 @@ public class ParkingFloor {
         this.spots = spots;
     }
 
-    public Map<VehicleType, List<ParkingSpot>> getAvailableSpots() {
-        return availableSpots;
+
+
+    public int getfloorNumber() {
+        return floorNumber;
     }
 
-    public void setAvailableSpots(Map<VehicleType, List<ParkingSpot>> availableSpots) {
-        this.availableSpots = availableSpots;
+    public void setfloorNumber(int floorNumber) {
+        this.floorNumber = floorNumber;
     }
-
-    public int getFloorId() {
-        return floorId;
-    }
-
-    public void setFloorId(int floorId) {
-        this.floorId = floorId;
-    }
-
-
 }

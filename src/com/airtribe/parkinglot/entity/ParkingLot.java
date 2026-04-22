@@ -3,6 +3,7 @@ package src.com.airtribe.parkinglot.entity;
 import java.util.List;
 
 public class ParkingLot {
+    private static int floorNumber = 0;
     private int parkingLotId;
     private String name;
     private List<ParkingFloor> floors;
