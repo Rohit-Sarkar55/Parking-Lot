@@ -3,6 +3,7 @@ package src;
 import src.com.airtribe.parkinglot.entity.*;
 import src.com.airtribe.parkinglot.enums.SpotType;
 import src.com.airtribe.parkinglot.enums.VehicleType;
+import src.com.airtribe.parkinglot.repository.TicketRepository;
 import src.com.airtribe.parkinglot.service.ParkingService;
 import src.com.airtribe.parkinglot.strategy.HourlyFeeCalculation;
 import src.com.airtribe.parkinglot.strategy.NearestAvailable;
@@ -23,7 +24,7 @@ public class Main {
 
 
 
-        ParkingService service = new ParkingService(lot, new NearestAvailable(), new HourlyFeeCalculation());
+        ParkingService service = new ParkingService(lot, new NearestAvailable(), new HourlyFeeCalculation(), new TicketRepository());
 
         Vehicle car =new Vehicle(VehicleType.CAR);
         Vehicle car2 = new Vehicle(VehicleType.CAR);
