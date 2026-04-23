@@ -66,6 +66,22 @@ public class ParkingSpot {
         this.isOccupied = false;
     }
 
+    public static class Builder {
+        private final int floorNumber;
+        private final int spotNumber;
+        private final SpotType spotType;
+
+        public Builder(int floorNumber, int spotNumber, SpotType spotType) {
+            this.floorNumber = floorNumber;
+            this.spotNumber = spotNumber;
+            this.spotType = spotType;
+        }
+
+        public ParkingSpot build() {
+            return new ParkingSpot(floorNumber, spotNumber, spotType);
+        }
+    }
+
     public synchronized void occupy(Vehicle vehicle) throws SpotAlreadyOccupied {
         if(isOccupied) {
             throw new SpotAlreadyOccupied("Spot is already occupied by "+ vehicle.getVehicleId() );

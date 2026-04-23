@@ -19,7 +19,7 @@ public class NearestAvailable implements SpotAllocationStrategy{
                }
            }
        }
-       throw new ParkingFullException("Parking is full no spot available for : "+ vehicle.getVehicleType());
+       throw new ParkingFullException("Parking is full no spot available for : "+ vehicle.getVehicleType() + " : "+vehicle.getVehicleId());
     }
     private boolean isCompatible(ParkingSpot spot, Vehicle vehicle){
         return switch (vehicle.getVehicleType()) {
