@@ -1,6 +1,7 @@
 package src.com.airtribe.parkinglot.repository;
 
 import src.com.airtribe.parkinglot.entity.Ticket;
+import src.com.airtribe.parkinglot.enums.TicketStatus;
 
 import java.util.*;
 
@@ -20,5 +21,10 @@ public class TicketRepository {
 
     public List<Ticket> findAll() {
         return store.values().stream().toList();
+    }
+
+    public List<Ticket> findAllTicketWithStatus(TicketStatus status){
+        return store.values().stream().filter(ticket -> ticket.getTicketStatus().equals(status))
+                .toList();
     }
 }

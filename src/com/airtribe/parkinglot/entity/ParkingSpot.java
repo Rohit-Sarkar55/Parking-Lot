@@ -95,4 +95,12 @@ public class ParkingSpot {
         this.parkedVehicle = null;
         this.isOccupied = false;
     }
+
+    @Override
+    public String toString() {
+        return "ParkingSpot{" +
+                "floorNumber=" + floorNumber +
+                ", spotNumber=" + spotNumber +
+                '}';
+    }
 }

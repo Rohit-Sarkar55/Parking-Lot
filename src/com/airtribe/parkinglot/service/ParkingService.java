@@ -14,6 +14,7 @@ import src.com.airtribe.parkinglot.strategy.FeeCalculationStrategy;
 import src.com.airtribe.parkinglot.strategy.SpotAllocationStrategy;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class ParkingService {
@@ -57,5 +58,9 @@ public class ParkingService {
         ticket.setTicketStatus(TicketStatus.CLOSED);
         ticketRepository.save(ticket);
         return ticket;
+    }
+
+    public List<Ticket> getAllOpenTickets(){
+        return ticketRepository.findAllTicketWithStatus(TicketStatus.ACTIVE);
     }
 }

@@ -30,4 +30,11 @@ public class Vehicle {
         this.vehicleId = IdGenerator.getVehicleId();
         this.vehicleType = type;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehicleType=" + vehicleType +
+                '}';
+    }
 }
