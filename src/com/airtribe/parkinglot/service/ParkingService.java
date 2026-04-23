@@ -30,6 +30,12 @@ public class ParkingService {
         this.ticketRepository = ticketRepository;
     }
 
+    /**
+     * Parks a vehicle by allocating the nearest available compatible spot and issuing a ticket.
+     *
+     * @param vehicle the vehicle to park
+     * @return the issued {@link Ticket}, or {@code null} if the lot is full or the spot is already occupied
+     */
     public Ticket checkIn(Vehicle vehicle){
         try {
            ParkingSpot spot=spotAllocationStrategy.allocate(vehicle, parkingLot.getFloors());
@@ -43,6 +49,14 @@ public class ParkingService {
         return null;
     }
 
+    /**
+     * Processes the exit of a parked vehicle: releases the spot, calculates the fee, and closes the ticket.
+     *
+     * @param ticketId the ID of the ticket issued at check-in
+     * @return the closed {@link Ticket} with the parking fee populated
+     * @throws TicketNotFoundException if no ticket exists for the given ID
+     * @throws TicketClosedException   if the ticket has already been closed
+     */
     public Ticket checkOut(int ticketId) throws TicketNotFoundException {
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new TicketNotFoundException("No Ticket Found With this ID : " + ticketId));
@@ -60,6 +74,11 @@ public class ParkingService {
         return ticket;
     }
 
+    /**
+     * Returns all tickets that are currently active (vehicle still parked).
+     *
+     * @return list of active {@link Ticket}s
+     */
     public List<Ticket> getAllOpenTickets(){
         return ticketRepository.findAllTicketWithStatus(TicketStatus.ACTIVE);
     }
