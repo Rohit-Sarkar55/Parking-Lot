@@ -78,4 +78,15 @@ public class Ticket {
     public void setParkingFee(double parkingFee) {
         this.parkingFee = parkingFee;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", entryTime=" + entryTime +
+                ", parkingSpot=" + parkingSpot +
+                ", vehicle=" + vehicle +
+                ", ticketStatus=" + ticketStatus +
+                '}';
+    }
 }

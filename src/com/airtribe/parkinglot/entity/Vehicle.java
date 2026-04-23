@@ -1,6 +1,7 @@
 package src.com.airtribe.parkinglot.entity;
 
 import src.com.airtribe.parkinglot.enums.VehicleType;
+import src.com.airtribe.parkinglot.util.IdGenerator;
 
 public class Vehicle {
     private int vehicleId;
@@ -20,5 +21,20 @@ public class Vehicle {
 
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
+    }
+
+    public Vehicle() {
+        this.vehicleId = IdGenerator.getVehicleId();
+    }
+    public Vehicle(VehicleType type){
+        this.vehicleId = IdGenerator.getVehicleId();
+        this.vehicleType = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehicleType=" + vehicleType +
+                '}';
     }
 }

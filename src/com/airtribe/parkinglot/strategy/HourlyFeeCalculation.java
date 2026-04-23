@@ -17,6 +17,7 @@ public class HourlyFeeCalculation implements FeeCalculationStrategy{
     public double calculateFee(Ticket ticket) {
         long duration_minutes = Duration.between(ticket.getEntryTime(), ticket.getExitTime()).toMinutes();
         long duration_hours = (long)(Math.ceil(duration_minutes/60.0));
+        duration_hours = Math.max(1l, duration_hours);
         double rate = RATE_PER_HOUR.get(ticket.getVehicle().getVehicleType());
         return duration_hours * rate;
     }
